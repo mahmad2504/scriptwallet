@@ -10,14 +10,14 @@ use mahmad\Jira\Jira;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
 
-class SyncVersion extends Command
+class zaahmad_updatepics extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-	protected $signature = 'sync {--fixversion=null} {--fields=null}';
+	protected $signature = 'zaahmad:updatepics {--fields=null}';
 
     /**
      * The console command description.
@@ -33,7 +33,7 @@ class SyncVersion extends Command
      */
     public function __construct()
     {
-		$this->tag = 'EPIC_UPDATE';
+		$this->tag = 'zaahmad_updatepics';
 		$this->server = 'IESD';
         parent::__construct();
     }
@@ -86,12 +86,13 @@ class SyncVersion extends Command
 		//Jira::Init('IESD');
 		$fields = new Fields($this->tag);
 		$query="issue in linkedIssues(ANDPR-266, 'releases') and type=Epic  and component in (CVBL) and status !=Released";
+		dump($query);
 		$tickets =  Jira::FetchTickets($query,$fields);
 		foreach($tickets as $ticket)
 		{
-			echo $ticket->key."\n";
-
-			$stasks = Jira::FetchTickets("'Epic Link'=".$ticket->key,$fields);
+			$query="'Epic Link'=".$ticket->key;
+			dump($query);
+			$stasks = Jira::FetchTickets($query,$fields);
 			$timeoriginalestimate= 0;
 			$timeremainingestimate = 0;
 			$timespent = 0;
@@ -99,7 +100,10 @@ class SyncVersion extends Command
 			{
 				if(count($task->subtasks)>0)
 				{
-					$ctasks = Jira::FetchTickets("issueFunction in subtasksOf ('key=".$task->key."')",$fields);
+					$query="issueFunction in subtasksOf ('key=".$task->key."')";
+					dump($query);
+					$ctasks = Jira::FetchTickets($query,$fields);
+					
 					foreach($ctasks as $ctask)
 					{
 						$timeoriginalestimate += $ctask->timeoriginalestimate;
@@ -114,60 +118,6 @@ class SyncVersion extends Command
 			}
 			Jira::UpdateTimeTrack($ticket->key,$timeoriginalestimate,$timeremainingestimate,$timespent);
 		}
-dd("dd");
-		$tickets = Jira::FetchTickets('project in (CB, SA)  and fixversion= FLEX_12.0.0   and filter=_devtasks',$fields);
-		foreach($tickets as $ticket)
-		{
-			if($ticket->resolutiondate != '')
-				echo new Carbon($ticket->resolutiondate)."  ".$ticket->key." ".$ticket->story_points."\n";//->format('Y-m-d')."\n";
-		}
-		//$tickets = Jira::BuildTree('project in (CB, SA)  and fixversion= FLEX_12.0.0   and filter=_devtasks');
-		
-		foreach($tickets as $ticket)
-		{
-			if($ticket->issuetypecategory == 'REQUIREMENT')
-			{
-				dump($ticket->key);
-				foreach($ticket->children as $child)
-				{
-					dump("--->".$child->key);
-					foreach($child->children as $cchild)
-					{
-						dump("--------->".$cchild->key);
-						//foreach($cchild->children as $ccchild)
-						//{
-						//	dump("------------->".$ccchild->key);
-						//}
-					}
-				}
-			}
-		}
-		
-		dd("jj");
-		$tickets = Jira::SetQueries($tickets);
-		foreach($tickets as $ticket)
-			dump($ticket->key);
-		//file_put_contents($opt_fixversion,serialize($tasks));
-		//dd(count($tasks));
-		foreach($tasks as $task)
-		{
-			$worklogs = Jira::WorkLogs($task->key);
-			$task->worklogs=$worklogs;
-			if($task->issuetype == 'Epic')
-			{
-				$stasks = Jira::Search("'Epic Link'=".$task->key);
-				$task->issuesinepic = $stasks;
-				foreach($stasks  as $stask)
-				{
-					$worklogs = Jira::WorkLogs($stask->key);
-					$stask->worklogs=$worklogs;
-				}
-			}
-			
-			
-		}
-		//dd($tasks);
-//		public function Sync($jql,$updated=null)
-		echo "Done";
+		dump("Done");
     }
 }
