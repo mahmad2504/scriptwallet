@@ -49,7 +49,7 @@ class zaahmad_updatepics extends Command
 		$fields = new Fields($this->tag);
 		$fields->Set(['key','status','statuscategory','summary',
 		'description','issuelinks',  //transitions
-		'timespent','resolution','timeremainingestimate','timeoriginalestimate',
+		'timespent','resolution','timeremainingestimate','timeoriginalestimate','timetracking',
 		'resolutiondate','updated','duedate','subtasks','issuetype','subtask',
 		'labels','fixVersions','issuetypecategory']);
 		$fields->Set(['epic_link'=>'Epic Link','story_points'=>'Story Points','sprint'=>'Sprint']);
@@ -87,6 +87,7 @@ class zaahmad_updatepics extends Command
 		$fields = new Fields($this->tag);
 		$query="issue in linkedIssues(ANDPR-266, 'releases') and type=Epic  and component in (CVBL) and status !=Released";
 		dump($query);
+		//$query='key=VSTARMOD-23421';
 		$tickets =  Jira::FetchTickets($query,$fields);
 		foreach($tickets as $ticket)
 		{
@@ -96,6 +97,7 @@ class zaahmad_updatepics extends Command
 			$timeoriginalestimate= 0;
 			$timeremainingestimate = 0;
 			$timespent = 0;
+			
 			foreach($stasks as $task)
 			{
 				if(count($task->subtasks)>0)
@@ -114,6 +116,7 @@ class zaahmad_updatepics extends Command
 				$timeoriginalestimate += $task->timeoriginalestimate;
 				$timeremainingestimate += $task->timeremainingestimate;
 				$timespent += $task->timespent;
+				
 				
 			}
 			Jira::UpdateTimeTrack($ticket->key,$timeoriginalestimate,$timeremainingestimate,$timespent);

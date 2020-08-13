@@ -17,7 +17,7 @@
         "lesstif/php-jira-rest-client": "^2.2",
         "mongodb/mongodb": "1.5",
         "nesbot/carbon": "^2.37",
-		"mahmad/jira" : "1.1"
+		"mahmad/jira" : "1.2"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
