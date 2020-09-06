@@ -1,24 +1,26 @@
 <?php
-namespace App\Console\Commands;
+namespace App\Console\Commands\zaahmad;
 
-use JiraRestApi\Field\Field;
-use JiraRestApi\Field\FieldService;
-use JiraRestApi\JiraException;
-use JiraRestApi\Configuration\ArrayConfiguration;
 use mahmad\Jira\Fields;
 use mahmad\Jira\Jira;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
 
-class zaahmad_updatepics extends Command
+class UpdateEpics extends Command
 {
+	private $ping_url = null;
+	//"https://script.google.com/macros/s/AKfycbwCNrLh0BxlYtR3I9iW2Z-4RQK88Hryd4DEC03lIYLoLCce80A/exec?func=alive&device=iesd_support"; 
+    private $ping = 10; // minutes
+	private $self_update = 60; // minutes
+	private $server = 'IESD';
+	
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-	protected $signature = 'zaahmad:updatepics {--fields=null}';
-
+	protected $signature = 'zaahmad:updateepics {--fields=null} {--beat=0}';
+	// 'zaahmad:updatepics --fields=update --beat=0';
     /**
      * The console command description.
      *
@@ -33,8 +35,6 @@ class zaahmad_updatepics extends Command
      */
     public function __construct()
     {
-		$this->tag = 'zaahmad_updatepics';
-		$this->server = 'IESD';
         parent::__construct();
     }
 	
@@ -43,10 +43,10 @@ class zaahmad_updatepics extends Command
      *
      * @return mixed
      */
-	public function DumpFields()
+	public function ConfigureJiraFields()
 	{
-		echo "Dumping field names\n";
-		$fields = new Fields($this->tag);
+		dump("Configuring Jira fields");
+		$fields = new Fields($this->key);
 		$fields->Set(['key','status','statuscategory','summary',
 		'description','issuelinks',  //transitions
 		'timespent','resolution','timeremainingestimate','timeoriginalestimate','timetracking',
@@ -54,38 +54,42 @@ class zaahmad_updatepics extends Command
 		'labels','fixVersions','issuetypecategory']);
 		$fields->Set(['epic_link'=>'Epic Link','story_points'=>'Story Points','sprint'=>'Sprint']);
 		$fields->Dump();
-		echo "Done\n";
 	}
-	public function GenerateMRTree($tasks)
+	public function handle()
 	{
-		$query = 'key in (';
-		$del = '';
-		foreach($tasks as $task)
+		date_default_timezone_set("Asia/Karachi");
+		
+		$classname = __CLASS__;
+		$namespace = __NAMESPACE__;
+		$this->key = (substr($namespace, strrpos($namespace, '\\') + 1))."/".(substr($classname, strrpos($classname, '\\') + 1));
+		$beat = $this->option('beat');
+		if($beat == 0)
 		{
-			foreach($task->subtasks as $key)
-			{
-				if(!isset($tasks[$key]))
-				{
-					$query .= $del.$key;
-					$del=',';
-				}
-			}
+			$this->ProcessCommand();
+			return;
+		}
+		
+		if(($beat % $this->ping) ==0)
+		{
+			if($this->ping_url != null)
+				file_get_contents($this->ping_url);
+		}
+		if(($beat % $this->self_update) ==0)
+		{
+			$this->ProcessCommand();
 		}
 	}
-    public function handle()
+	public function ProcessCommand()
     {
 		$opt_fields = $this->option('fields');
-		if($opt_fields == 'update')
-			$this->DumpFields();
-		
-		//$opt_fixversion = $this->option('fixversion');
-		//if(file_exists($opt_fixversion,serialize($tasks));
-		//$tasks = Jira::Search('fixVersion='.$opt_fixversion);
-		//$tickets = Jira::BuildTree('key in (HMIP-100,HMIP-200,HMIP-1738)');
 		Jira::Init($this->server);
-		//Jira::Init('IESD');
-		$fields = new Fields($this->tag);
-		$query="issue in linkedIssues(ANDPR-266, 'releases') and type=Epic  and component in (CVBL) and status !=Released";
+		if($opt_fields == 'update')
+			$this->ConfigureJiraFields();
+		
+		$fields = new Fields($this->key);
+                $query="issue in linkedIssues(ANDPR-266, 'releases') and type=Epic  and component in (CVBL) and status !=Released ";
+		$query.="or issue in linkedIssues(ANDPR-286, 'releases') and type=Epic  and component in (CVBL) and status !=Released";
+		dump($query);
 		dump($query);
 		//$query='key=VSTARMOD-23421';
 		$tickets =  Jira::FetchTickets($query,$fields);

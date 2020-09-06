@@ -10,3 +10,5 @@
 [2020-08-13T13:01:44.913743+00:00] JiraClient.ERROR: CURL Error: http response=0, Could not resolve host: ies-iesd-jira.ies.mentorg.com [] []
 [2020-08-13T13:01:58.026510+00:00] JiraClient.ERROR: CURL Error: http response=0, Could not resolve host: ies-iesd-jira.ies.mentorg.com [] []
 [2020-08-13T13:02:09.308598+00:00] JiraClient.ERROR: CURL Error: http response=0, Could not resolve host: ies-iesd-jira.ies.mentorg.com [] []
+[2020-08-14T04:57:53.218867+00:00] JiraClient.ERROR: CURL Error: http response=0, Could not resolve host: ies-iesd-jira.ies.mentorg.com [] []
+[2020-09-06T22:20:33.820226+05:00] JiraClient.ERROR: CURL Error: http response=0,  [] []
