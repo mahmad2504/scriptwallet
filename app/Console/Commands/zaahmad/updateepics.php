@@ -86,11 +86,15 @@ class UpdateEpics extends Command
 		if($opt_fields == 'update')
 			$this->ConfigureJiraFields();
 		
+		$beat = $this->option('beat');
+		if(($beat % 60)!=0)
+			return;
+		
 		$fields = new Fields($this->key);
                 $query="issue in linkedIssues(ANDPR-266, 'releases') and type=Epic  and component in (CVBL) and status !=Released ";
 		$query.="or issue in linkedIssues(ANDPR-286, 'releases') and type=Epic  and component in (CVBL) and status !=Released";
 		dump($query);
-		dump($query);
+		
 		//$query='key=VSTARMOD-23421';
 		$tickets =  Jira::FetchTickets($query,$fields);
 		foreach($tickets as $ticket)

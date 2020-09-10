@@ -18,7 +18,7 @@ class updatsupportmatric extends Command
      *
      * @var string
      */
-     protected $signature = 'zaahmad:updatsupportmatric {--fields=null} {--rebuild=0} {--beat=0}';
+     protected $signature = 'zaahmad:updatesupportmatric {--fields=null} {--rebuild=0} {--beat=0}';
 
     /**
      * The console command description.
