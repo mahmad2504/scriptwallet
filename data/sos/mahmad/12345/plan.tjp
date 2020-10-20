@@ -1,0 +1,582 @@
+project acs "SOW12345" 2020-10-17 +48m
+{ 
+   timezone "Asia/Karachi"
+   timeformat "%Y-%m-%d"
+   numberformat "-" "" "," "." 1 
+   currencyformat "(" ")" "," "." 0 
+   currency "USD"
+   scenario plan "Plan" {}
+   extend task { text Jira "Jira"}
+} 
+macro allocate_developers [
+   allocate Hombourger_Cedric
+   allocate Bhola_Bikram
+   allocate OnkarSurendrakumar_Bokshe
+   allocate Richa_Bharti
+   allocate Shrikant_Bobade
+   allocate Mumtaz_Ahmad
+   allocate Joe_MacDonald
+   allocate Pattnaik_Abhishek
+   allocate Amy_Fong
+   allocate unassigned
+   allocate Krishnakar_Srikanth
+]
+resource all "Developers" {
+    resource Hombourger_Cedric "Hombourger_Cedric" {
+        limits { weeklymax  40h}
+    }
+    resource Bhola_Bikram "Bhola_Bikram" {
+        limits { weeklymax  40h}
+    }
+    resource OnkarSurendrakumar_Bokshe "OnkarSurendrakumar_Bokshe" {
+        limits { weeklymax  40h}
+    }
+    resource Richa_Bharti "Richa_Bharti" {
+        limits { weeklymax  40h}
+    }
+    resource Shrikant_Bobade "Shrikant_Bobade" {
+        limits { weeklymax  40h}
+    }
+    resource Mumtaz_Ahmad "Mumtaz_Ahmad" {
+        limits { weeklymax  40h}
+    }
+    resource Joe_MacDonald "Joe_MacDonald" {
+        limits { weeklymax  40h}
+    }
+    resource Pattnaik_Abhishek "Pattnaik_Abhishek" {
+        limits { weeklymax  40h}
+    }
+    resource Amy_Fong "Amy_Fong" {
+        limits { weeklymax  40h}
+    }
+    resource unassigned "unassigned" {
+        limits { weeklymax  40h}
+    }
+    resource Krishnakar_Srikanth "Krishnakar_Srikanth" {
+        limits { weeklymax  40h}
+    }
+}
+task t1 "1 SOW12345" {
+task t1a0 "1.0 fixVersion=IOS2" {
+     task t1a0a0 "1.0.0 core: setup log" {
+        complete 100
+        Jira "INDLIN-1936"
+        priority 0
+     }
+     task t1a0a1 "1.0.1 industrial-edge" {
+        complete 0
+        Jira "INDLIN-1931"
+        priority 0
+     }
+     task t1a0a2 "1.0.2 industrial-edge" {
+        complete 0
+        Jira "INDLIN-1921"
+        priority 1000
+     }
+     task t1a0a3 "1.0.3 industrial-edge" {
+        complete 100
+        Jira "INDLIN-1912"
+        priority 0
+     }
+     task t1a0a4 "1.0.4 mel-setup : mel" {
+        complete 100
+        Jira "INDLIN-1908"
+        priority 0
+     }
+     task t1a0a5 "1.0.5 industrial-edge" {
+        complete 0
+        Jira "INDLIN-1882"
+        priority 999
+        effort 5d
+        allocate Amy_Fong
+     }
+     task t1a0a6 "1.0.6 IndOS-2.1.2-Rel" {
+        complete 0
+        Jira "INDLIN-1881"
+        priority 0
+        effort 1d
+        allocate Bhola_Bikram
+     }
+     task t1a0a7 "1.0.7 IndOS-2.1.2-Rel" {
+        complete 100
+        Jira "INDLIN-1880"
+        priority 0
+     }
+     task t1a0a8 "1.0.8 IndOS-2.1.2-Rel" {
+        complete 0
+        Jira "INDLIN-1879"
+        priority 0
+        effort 3d
+        allocate OnkarSurendrakumar_Bokshe
+     }
+     task t1a0a9 "1.0.9 IndOS-2.1.2-Rel" {
+        complete 0
+        Jira "INDLIN-1878"
+        priority 0
+        effort 3d
+        allocate OnkarSurendrakumar_Bokshe
+     }
+     task t1a0a10 "1.0.10 IndOS-2.1.2-Rel" {
+        complete 0
+        Jira "INDLIN-1877"
+        priority 0
+        effort 3d
+        allocate OnkarSurendrakumar_Bokshe
+     }
+     task t1a0a11 "1.0.11 IndOS-2.1.2-Rel" {
+        complete 100
+        Jira "INDLIN-1876"
+        priority 0
+     }
+     task t1a0a12 "1.0.12 IndOS-2.1.2-Rel" {
+        complete 100
+        Jira "INDLIN-1875"
+        priority 0
+     }
+     task t1a0a13 "1.0.13 IndOS-2.1.2-Rel" {
+        complete 100
+        Jira "INDLIN-1874"
+        priority 0
+     }
+     task t1a0a14 "1.0.14 IndOS-2.1.2-Rel" {
+        complete 100
+        Jira "INDLIN-1873"
+        priority 0
+     }
+     task t1a0a15 "1.0.15 IndOS-2.1.2-Rel" {
+        complete 100
+        Jira "INDLIN-1872"
+        priority 0
+     }
+     task t1a0a16 "1.0.16 IndOS-2.1.2-Rel" {
+        complete 0
+        Jira "INDLIN-1871"
+        priority 0
+     }
+     task t1a0a17 "1.0.17 installer: back" {
+        complete 100
+        Jira "INDLIN-1870"
+        priority 0
+     }
+     task t1a0a18 "1.0.18 industrial-edge" {
+        complete 100
+        Jira "INDLIN-1865"
+        priority 0
+     }
+     task t1a0a19 "1.0.19 mel-setup: race" {
+        complete 100
+        Jira "INDLIN-1813"
+        priority 0
+     }
+     task t1a0a20 "1.0.20 industrial-edge" {
+        complete 100
+        Jira "INDLIN-1808"
+        priority 0
+     }
+     task t1a0a21 "1.0.21 mel-setup: typo" {
+        complete 100
+        Jira "INDLIN-1800"
+        priority 0
+     }
+     task t1a0a22 "1.0.22 setup: patch nu" {
+        complete 100
+        Jira "INDLIN-1794"
+        priority 0
+     }
+     task t1a0a23 "1.0.23 industrial-edge" {
+        complete 0
+        Jira "INDLIN-1793"
+        priority 998
+        effort 1d
+        allocate Shrikant_Bobade
+     }
+     task t1a0a24 "1.0.24 oss: 2.1.2 revi" {
+        complete 0
+        Jira "INDLIN-1792"
+        priority 0
+        effort 3d
+        allocate Mumtaz_Ahmad
+     }
+     task t1a0a25 "1.0.25 oss: 2.1.2 crea" {
+        complete 100
+        Jira "INDLIN-1791"
+        priority 0
+     }
+     task t1a0a26 "1.0.26 oss: prepare os" {
+        complete 100
+        Jira "INDLIN-1790"
+        priority 0
+     }
+     task t1a0a27 "1.0.27 mel-setup: conf" {
+        complete 100
+        Jira "INDLIN-1776"
+        priority 0
+     }
+     task t1a0a28 "1.0.28 industrial-edge" {
+        complete 100
+        Jira "INDLIN-1755"
+        priority 0
+     }
+     task t1a0a29 "1.0.29 Renaming 'Mel-s" {
+        complete 100
+        Jira "INDLIN-1733"
+        priority 0
+     }
+     task t1a0a30 "1.0.30 first boot conn" {
+        complete 100
+        Jira "INDLIN-1708"
+        priority 0
+     }
+     task t1a0a31 "1.0.31 industrial-edge" {
+        complete 100
+        Jira "INDLIN-1691"
+        priority 0
+     }
+     task t1a0a32 "1.0.32 provide pre- / " {
+        complete 100
+        Jira "INDLIN-1684"
+        priority 0
+     }
+     task t1a0a33 "1.0.33 [edge 2.1.1] ci" {
+        complete 100
+        Jira "INDLIN-1673"
+        priority 0
+     }
+     task t1a0a34 "1.0.34 industrial-edge" {
+        complete 100
+        Jira "INDLIN-1668"
+        priority 0
+     }
+     task t1a0a35 "1.0.35 industrial-edge" {
+        complete 0
+        Jira "INDLIN-1663"
+        priority 997
+        effort 7d
+        allocate Amy_Fong
+     }
+     task t1a0a36 "1.0.36 core: overlay m" {
+        complete 100
+        Jira "INDLIN-1650"
+        priority 0
+     }
+     task t1a0a37 "1.0.37 swupdate: SWU_C" {
+        complete 100
+        Jira "INDLIN-1513"
+        priority 0
+     }
+     task t1a0a38 "1.0.38 core: tpm-abrmd" {
+        complete 100
+        Jira "INDLIN-1499"
+        priority 0
+     }
+     task t1a0a39 "1.0.39 industrial-edge" {
+        complete 100
+        Jira "INDLIN-1422"
+        priority 0
+     }
+     task t1a0a40 "1.0.40 restore.inf for" {
+        complete 100
+        Jira "INDLIN-1378"
+        priority 0
+     }
+     task t1a0a41 "1.0.41 industrial-edge" {
+        complete 100
+        Jira "INDLIN-1303"
+        priority 0
+     }
+     task t1a0a42 "1.0.42 INDLIN-1287: [B" {
+        complete 0
+        Jira "INDLIN-1287"
+        priority 0
+        effort 3d
+        allocate Shrikant_Bobade
+     }
+     task t1a0a43 "1.0.43 industrial-edge" {
+        complete 100
+        Jira "INDLIN-909"
+        priority 0
+     }
+     task t1a0a44 "1.0.44 INDLIN-295: [BL" {
+        complete 0
+        Jira "INDLIN-295"
+        priority 0
+        effort 5d
+        allocate Shrikant_Bobade
+     }
+}
+task t1a1 "1.1 fixVersion=IOS1" {
+     task t1a1a0 "1.1.0 mel-setup-cli: " {
+        complete 100
+        Jira "INDLIN-1944"
+        priority 0
+     }
+     task t1a1a1 "1.1.1 setup: remove d" {
+        complete 100
+        Jira "INDLIN-1915"
+        priority 0
+     }
+     task t1a1a2 "1.1.2 comfort: Fetche" {
+        complete 100
+        Jira "INDLIN-1913"
+        priority 0
+     }
+     task t1a1a3 "1.1.3 comfort: showin" {
+        complete 100
+        Jira "INDLIN-1801"
+        priority 0
+     }
+     task t1a1a4 "1.1.4 oss:1.5.5 oblig" {
+        complete 0
+        Jira "INDLIN-1759"
+        priority 0
+        effort 3d
+        allocate Mumtaz_Ahmad
+     }
+     task t1a1a5 "1.1.5 oss:1.5.5 Reque" {
+        complete 100
+        Jira "INDLIN-1758"
+        priority 0
+     }
+     task t1a1a6 "1.1.6 IndOS-1.5.5 :  " {
+        complete 100
+        Jira "INDLIN-1714"
+        priority 0
+     }
+     task t1a1a7 "1.1.7 core: overlay m" {
+        complete 100
+        Jira "INDLIN-1660"
+        priority 0
+     }
+     task t1a1a8 "1.1.8 comfort-edition" {
+        complete 100
+        Jira "INDLIN-1643"
+        priority 0
+     }
+     task t1a1a9 "1.1.9 IndOS-1.5.5-Rel" {
+        complete 100
+        Jira "INDLIN-1642"
+        priority 0
+     }
+     task t1a1a10 "1.1.10 IndOS-1.5.5-Rel" {
+        complete 0
+        Jira "INDLIN-1641"
+        priority 0
+        effort 3d
+        allocate Pattnaik_Abhishek
+     }
+     task t1a1a11 "1.1.11 IndOS-1.5.5-Rel" {
+        complete 100
+        Jira "INDLIN-1640"
+        priority 0
+     }
+     task t1a1a12 "1.1.12  IndOS-1.5.5-Re" {
+        complete 100
+        Jira "INDLIN-1639"
+        priority 0
+     }
+     task t1a1a13 "1.1.13 IndOS-1.5.5-Rel" {
+        complete 100
+        Jira "INDLIN-1638"
+        priority 0
+     }
+     task t1a1a14 "1.1.14 IndOS-1.5.5-Rel" {
+        complete 100
+        Jira "INDLIN-1637"
+        priority 0
+     }
+     task t1a1a15 "1.1.15 IndOS-1.5.5-Rel" {
+        complete 100
+        Jira "INDLIN-1636"
+        priority 0
+     }
+     task t1a1a16 "1.1.16 IndOS-1.5.5-Rel" {
+        complete 100
+        Jira "INDLIN-1635"
+        priority 0
+     }
+     task t1a1a17 "1.1.17 IndOS-1.5.5-Rel" {
+        complete 100
+        Jira "INDLIN-1634"
+        priority 0
+     }
+     task t1a1a18 "1.1.18 comfort: add au" {
+        complete 100
+        Jira "INDLIN-1508"
+        priority 0
+     }
+     task t1a1a19 "1.1.19 IndOS-1.5.5-Rel" {
+        complete 100
+        Jira "INDLIN-1489"
+        priority 0
+     }
+     task t1a1a20 "1.1.20 IndOS-1.5.5-COM" {
+        complete 0
+        Jira "INDLIN-1488"
+        priority 0
+     }
+     task t1a1a21 "1.1.21 oss: prepare os" {
+        complete 100
+        Jira "INDLIN-1428"
+        priority 0
+     }
+     task t1a1a22 "1.1.22 comfort: add fa" {
+        complete 100
+        Jira "INDLIN-1415"
+        priority 0
+     }
+     task t1a1a23 "1.1.23 comfort: add wh" {
+        complete 100
+        Jira "INDLIN-1413"
+        priority 0
+     }
+     task t1a1a24 "1.1.24 comfort: add qt" {
+        complete 100
+        Jira "INDLIN-1401"
+        priority 0
+     }
+     task t1a1a25 "1.1.25 comfort: add We" {
+        complete 100
+        Jira "INDLIN-1399"
+        priority 0
+     }
+     task t1a1a26 "1.1.26 comfort: add py" {
+        complete 100
+        Jira "INDLIN-1397"
+        priority 0
+     }
+     task t1a1a27 "1.1.27 comfort: add li" {
+        complete 100
+        Jira "INDLIN-1395"
+        priority 0
+     }
+     task t1a1a28 "1.1.28 comfort: add py" {
+        complete 100
+        Jira "INDLIN-1393"
+        priority 0
+     }
+     task t1a1a29 "1.1.29 comfort: add li" {
+        complete 100
+        Jira "INDLIN-1391"
+        priority 0
+     }
+     task t1a1a30 "1.1.30 comfort: add se" {
+        complete 100
+        Jira "INDLIN-1389"
+        priority 0
+     }
+     task t1a1a31 "1.1.31 comfort: update" {
+        complete 100
+        Jira "INDLIN-1388"
+        priority 0
+     }
+     task t1a1a32 "1.1.32 Integrate lates" {
+        complete 100
+        Jira "INDLIN-1341"
+        priority 0
+     }
+     task t1a1a33 "1.1.33 Integrate patch" {
+        complete 100
+        Jira "INDLIN-1340"
+        priority 0
+     }
+     task t1a1a34 "1.1.34 Comfort HMI Ima" {
+        complete 100
+        Jira "INDLIN-1339"
+        priority 0
+     }
+     task t1a1a35 "1.1.35 Comfort HMI req" {
+        complete 100
+        Jira "INDLIN-1071"
+        priority 0
+     }
+     task t1a1a36 "1.1.36 comfort: UCP de" {
+        complete 100
+        Jira "INDLIN-724"
+        priority 0
+     }
+     task t1a1a37 "1.1.37 ipc-1.5.x: upda" {
+        complete 100
+        Jira "INDLIN-699"
+        priority 0
+     }
+     task t1a1a38 "1.1.38 comfort: restor" {
+        complete 100
+        Jira "INDLIN-565"
+        priority 0
+     }
+}
+}
+
+		
+		taskreport monthreporthtml "monthreporthtml" {
+			formats html
+			columns bsi, name, start, end, effort,resources, complete,Jira, monthly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+			timeformat "%a %Y-%m-%d"
+			loadunit hours
+		   hideresource @all
+		}
+		
+		taskreport monthreport "monthreport" {
+			formats csv
+			columns bsi { title "ExtId" },name, start { title "Start" }, end { title "End" }, resources { title "Resource" }, monthly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+			timeformat "%Y-%m-%d"
+			loadunit hours
+			hideresource @all
+		}
+		
+		#taskreport weekreporthtml "weekreporthtml" {
+		#	formats html
+		#	columns bsi, name, start, end, effort,resources, complete,Jira, weekly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%Y-%m-%d"
+		#	loadunit hours
+		#	hideresource @all
+		#}
+		
+		#taskreport weekreport "weekreport" {
+		#	formats csv
+		#	columns bsi { title "ExtId" },name, start { title "Start" }, end { title "End" }, resources { title "Resource" }, weekly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%Y-%m-%d"
+		#	loadunit hours
+		#	hideresource @all
+		#}
+		
+		#taskreport dayreporthtml "dayreporthtml" {
+		#	formats html
+		#	columns bsi, name, start, end, effort,resources, complete,Jira, daily
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%Y-%m-%d"
+		#	loadunit hours
+		#	hideresource @all
+		#}
+	
+		
+		#resourcereport resourcegraphhtm "resourcehtml" {
+		#   formats html
+		#   headline "Resource Allocation Graph"
+		#   columns no, name, effort, weekly 
+		   #loadunit shortauto
+	       # We only like to show leaf tasks for leaf resources.
+		#   hidetask ~(isleaf() & isleaf_())
+		#   sorttasks plan.start.up
+		#}
+		
+		#resourcereport resourcegraph "resource" {
+		#   formats csv
+		#   headline "Resource Allocation Graph"
+		#   columns name, effort, weekly 
+		   #loadunit shortauto
+	       # We only like to show leaf tasks for leaf resources.
+		#   hidetask 1
+		   #hidetask ~(isleaf() & isleaf_())
+		   #sorttasks plan.start.up
+		#}
+		

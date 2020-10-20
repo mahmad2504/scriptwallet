@@ -1,10 +1,29 @@
 <?php
 use Carbon\Carbon;
-use app\Database;
+use App\Database;
 
+function ConsoleLog($msg) 
+{
+	if(App::runningInConsole())
+	{
+		echo $msg."\n";
+		return;
+	}
+	$msg = str_replace('"', "'", $msg);
+	echo '<b>'.$msg.'<br></b>';
+	ob_flush();
+	flush();
+}
 function SetTimeZone($datetime)
 {
 	$datetime->setTimezone(new \DateTimeZone("Asia/Karachi"));
+}
+function CreateDateTime($timestamp)
+{
+	$dt = new DateTime();
+	$dt->setTimestamp($timestamp);
+	SetTimeZone($dt);
+	return $dt;
 }
 function IssueParser($code,$issue,$fieldname)
 {
@@ -170,4 +189,12 @@ function get_working_seconds($start, $end)
 function get_working_minutes($ini_str,$end_str)
 {		
 	return round(get_working_seconds($ini_str,$end_str)/60);
+}
+function DbVar($collection,$var)
+{
+	$db  = new Database('scripwallet');
+	if(is_array($var))
+		$db->SaveVar($collection,$var);
+	else
+		return $db->GetVar($collection,$var);
 }

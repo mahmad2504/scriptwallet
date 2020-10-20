@@ -1,0 +1,128 @@
+project acs "SOW-345" 2020-10-19 +48m
+{ 
+   timezone "Asia/Karachi"
+   timeformat "%Y-%m-%d"
+   numberformat "-" "" "," "." 1 
+   currencyformat "(" ")" "," "." 0 
+   currency "USD"
+   scenario plan "Plan" {}
+   extend task { text Jira "Jira"}
+} 
+macro allocate_developers [
+   allocate Ahmad_Mumtaz
+]
+resource all "Developers" {
+    resource Ahmad_Mumtaz "Ahmad_Mumtaz" {
+        limits { weeklymax  40h}
+    }
+}
+task t1 "1 SOW-345" {
+task t1a0 "1.0 structure=634" {
+     task t1a0a0 "1.0.0 Neusoft B-Sampl" {
+          task t1a0a0a0 "1.0.0.0 Invoice Verific" {
+             complete 25
+             Jira "HMIP-1640"
+             priority 1000
+             effort 3d
+             allocate Ahmad_Mumtaz
+          }
+          task t1a0a0a1 "1.0.0.1 Hardware Pictur" {
+             complete 0
+             depends !!!!t1.t1a0.t1a0a0.t1a0a0a0
+             Jira "HMIP-1641"
+             priority 999
+             effort 1.125d
+             allocate Ahmad_Mumtaz
+          }
+          task t1a0a0a2 "1.0.0.2 Documentation -" {
+               task t1a0a0a2a0 "1.0.0.2.0 New Task" {
+                  complete 100
+                  Jira "HMIP-1793"
+                  priority 0
+               }
+          }
+     }
+}
+task t1a1 "1.1 key in -HMIP-16" {
+     task t1a1a0 "1.1.0 Invoice Verific" {
+        complete 25
+        Jira "HMIP-1640"
+        priority 998
+     }
+}
+}
+
+		
+		#taskreport monthreporthtml "monthreporthtml" {
+		#	formats html
+		#	columns bsi, name, start, end, effort,resources, complete,Jira, monthly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%a %Y-%m-%d"
+		#	loadunit hours
+		#   hideresource @all
+		#}
+		
+		#taskreport monthreport "monthreport" {
+		#	formats csv
+		#	columns bsi { title "ExtId" },name, start { title "Start" }, end { title "End" }, resources { title "Resource" }, monthly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%Y-%m-%d"
+		#	loadunit hours
+		#	hideresource @all
+		#}
+		
+		taskreport weekreporthtml "weekreporthtml" {
+			formats html
+			columns bsi, name, start, end, effort,resources, complete,Jira, weekly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+			timeformat "%Y-%m-%d"
+			loadunit hours
+			hideresource @all
+		}
+		
+		taskreport weekreport "weekreport" {
+			formats csv
+			columns bsi { title "ExtId" },name, start { title "Start" }, end { title "End" }, resources { title "Resource" }, weekly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+			timeformat "%Y-%m-%d"
+			loadunit hours
+			hideresource @all
+		}
+		
+		#taskreport dayreporthtml "dayreporthtml" {
+		#	formats html
+		#	columns bsi, name, start, end, effort,resources, complete,Jira, daily
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%Y-%m-%d"
+		#	loadunit hours
+		#	hideresource @all
+		#}
+	
+		
+		resourcereport resourcegraphhtm "resourcehtml" {
+		   formats html
+		   headline "Resource Allocation Graph"
+		   columns no, name, effort, weekly 
+		   #loadunit shortauto
+	       # We only like to show leaf tasks for leaf resources.
+		   # hidetask ~(isleaf() & isleaf_())
+		   hidetask 1
+		   sorttasks plan.start.up
+		}
+		
+		resourcereport resourcegraph "resource" {
+		   formats csv
+		   headline "Resource Allocation Graph"
+		   columns name, effort, weekly 
+		   #loadunit shortauto
+	       # We only like to show leaf tasks for leaf resources.
+		   hidetask 1
+		   #hidetask ~(isleaf() & isleaf_())
+		   sorttasks plan.start.up
+		}
+		

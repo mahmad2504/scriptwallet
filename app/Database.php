@@ -42,20 +42,22 @@ class Database
 		}
 		return 0;
 	}
-	function GetVar($var)
+	function GetVar($collection,$var)
 	{
 		$query=[];
-		$obj = $this->db->settings->findOne($query);
+		
+		$obj = $this->db->$collection->findOne($query);
 		if($obj  == null)
 			return null;
 		if(isset($obj->$var))
 			return $obj->$var;
 		return null;
 	}
-	function SaveVar($arr)
+	function SaveVar($collection,$arr)
 	{
 		$query=[];
-		$obj = $this->db->settings->findOne($query);
+		
+		$obj = $this->db->$collection->findOne($query);
 		if($obj  == null)
 		{
 			$obj = new \StdClass();
@@ -65,7 +67,7 @@ class Database
 			$obj->$key=$val;
 		}
 		$options=['upsert'=>true];
-		$this->db->settings->updateOne($query,['$set'=>$obj],$options);
+		$this->db->$collection->updateOne($query,['$set'=>$obj],$options);
 	}
 	public function ReadActive()
 	{

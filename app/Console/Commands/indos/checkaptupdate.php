@@ -62,6 +62,30 @@ class CheckAptUpdate extends Command
 			$this->ProcessCommand();
 		}
 	}
+	public function scanDirectories($rootDir, $allData=array()) 
+	{
+		// set filenames invisible if you want
+		$invisibleFileNames = array(".", "..", ".htaccess", ".htpasswd");
+		// run through content of root directory
+		$dirContent = scandir($rootDir);
+		foreach($dirContent as $key => $content) {
+			// filter all files not accessible
+			$path = $rootDir.'/'.$content;
+			if(!in_array($content, $invisibleFileNames)) {
+				// if content is file & readable, add to array
+				if(is_file($path) && is_readable($path)) {
+					// save file name with path
+					$allData[] = $path;
+					dump($path);
+				// if content is a directory and readable, add path and name
+				}elseif(is_dir($path) && is_readable($path)) {
+					// recursive callback to open new directory
+					$allData = $this->scanDirectories($path, $allData);
+				}
+			}
+		}
+		return $allData;
+	}
 	public function ProcessCommand()
     {
 		$classname = __CLASS__;
@@ -93,10 +117,12 @@ class CheckAptUpdate extends Command
 		// Create our SFTP resource
 		if (!$sftp = ssh2_sftp($connection)) throw new Exception('Unable to create SFTP connection.');
 
-		$remoteDir = '/filesend/volt/common';
+		$remoteDir = '/filesend/volt/common/2.0';
+		dd($this->scanDirectories('ssh2.sftp://' . $sftp. $remoteDir));
 		// download all the files
-		$files    = scandir('ssh2.sftp://' . $sftp . $remoteDir);
-		
+		//$files    = scandir('ssh2.sftp://' . $sftp . $remoteDir);
+		$files    = scandir('app');
+
 		if (!empty($files)) {
 		  foreach ($files as $file) {
 			if ($file != '.' && $file != '..') {
@@ -114,17 +140,26 @@ class CheckAptUpdate extends Command
 				if(!isset($obj->name))
 				{
 					$obj->name =  $file;
-					$statinfo = ssh2_sftp_stat($sftp, '/filesend/volt/common/'.$file);
-					$obj->stats =  $statinfo ;
+					//$statinfo = ssh2_sftp_stat($sftp, '/filesend/volt/common/'.$file);
+					//$mtime = $statinfo['mtime'];
+					$mtime = filemtime('app/'.$file);
+					
+					$obj->mtime =  $mtime ;
+					//$message = '/filesend/volt/common/'.$file." Created";
+					//$this->SendEmail($message);
 					$data[] = $obj;
 				}
 				else
 				{
-					$statinfo = ssh2_sftp_stat($sftp, '/filesend/volt/common/'.$file);
-					if($obj->stats->mtime != $statinfo['mtime'])
+					//$statinfo = ssh2_sftp_stat($sftp, '/filesend/volt/common/'.$file);
+					//$mtime = $statinfo['mtime'];
+					$mtime = filemtime('app/'.$file);
+					
+					if($obj->mtime != $mtime)
+					//if($obj->stats->mtime != $statinfo['mtime'])
 					{
 						$message = '/filesend/volt/common/'.$file." Updated";
-						$this->SendEmail($message);
+						//$this->SendEmail($message);
 					}
 				}
 				//echo gmdate("Y-m-d\TH:i:s\Z", $statinfo['mtime'])."\n";
@@ -133,6 +168,7 @@ class CheckAptUpdate extends Command
 		}
 		$data = json_encode($data);
 		file_put_contents($filename,$data);
+		//ssh2_disconnect($sftp);
 		//$this->SendEmail();
 
     }
