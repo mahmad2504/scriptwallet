@@ -240,15 +240,15 @@ class Tj
 		#	hideresource @all
 		#}
 		
-		taskreport weekreporthtml \"weekreporthtml\" {
-			formats html
-			columns bsi, name, start, end, effort,resources, complete,Jira, weekly
+		#taskreport weekreporthtml \"weekreporthtml\" {
+		#	formats html
+		#	columns bsi, name, start, end, effort,resources, complete,Jira, weekly
 			# For this report we like to have the abbreviated weekday in front
 			# of the date. %a is the tag for this.
-			timeformat \"%Y-%m-%d\"
-			loadunit hours
-			hideresource @all
-		}
+		#	timeformat \"%Y-%m-%d\"
+		#	loadunit hours
+		#	hideresource @all
+		#}
 		
 		taskreport weekreport \"weekreport\" {
 			formats csv
@@ -271,16 +271,16 @@ class Tj
 		#}
 	
 		
-		resourcereport resourcegraphhtm \"resourcehtml\" {
-		   formats html
-		   headline \"Resource Allocation Graph\"
-		   columns no, name, effort, weekly 
+		#resourcereport resourcegraphhtm \"resourcehtml\" {
+		#   formats html
+		#   headline \"Resource Allocation Graph\"
+		#   columns no, name, effort, weekly 
 		   #loadunit shortauto
 	       # We only like to show leaf tasks for leaf resources.
 		   # hidetask ~(isleaf() & isleaf_())
-		   hidetask 1
-		   sorttasks plan.start.up
-		}
+		#   hidetask 1
+		#   sorttasks plan.start.up
+		#}
 		
 		resourcereport resourcegraph \"resource\" {
 		   formats csv
