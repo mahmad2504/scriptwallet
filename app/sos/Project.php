@@ -354,12 +354,18 @@ class Project
 					$u->rate=10;
 					$u->eff=100;
 					$u->active=1;
+					$u->past = 0;
+					$u->future = new \StdClass();
+					$u->future->Effort = 0;
+					$u->baselinework = 0;
+				
 					$temp[$user] = $u;
 				}
 				$temp[$user]->past = Round($acc/(60*60*8),1);
 				$total += $acc;
 			}
 			$ticket->resourcetable=$temp;
+			
 			$this->ComputeFinancials($this->project);
 			$ticket->resourcetable=array_values($temp);
 			//dd($ticket->resourcetable);
@@ -432,14 +438,21 @@ class Project
 			$this->Show($sticket);
 		}
 	}
-	function Sync($rebuild)
+	function Sync($rebuild=0,$auto_sync=0)
 	{
-		if(file_exists($this->folder."/tree.json")&&$rebuild!=1)
+		$this->project->auto_sync = $auto_sync;
+		$this->project->history = new \StdClass();
+		if(file_exists($this->folder."/tree.json"))
 		{
 			$savedtree = json_decode(file_get_contents($this->folder."/tree.json"));
-			$this->savedtickets = $this->FetchTickets($savedtree);
+			if($rebuild!=1)
+				$this->savedtickets = $this->FetchTickets($savedtree);
+			if(isset($savedtree->history))
+				$this->project->history = $savedtree->history;
+			else
+				$this->project->history = new \StdClass();
+			
 		}
-		
 		Jira::Init($this->server);
 		$this->children = [];
 		$fields = new Fields($this->fieldkey);
@@ -488,10 +501,11 @@ class Project
 		//$this->GetResources($this->project);
 		@mkdir($this->folder,0777,true);
 		$this->Schedule();
-		ConsoleLog('<table>');
+		//ConsoleLog('<table>');
 		//$this->Show($this->project);
 		//dd($this->project->remaining/(60*60*8));
-		ConsoleLog('</table>');
+		//ConsoleLog('</table>');
+		//$this->AddHistory();
 		$this->Save();		
 	}
 	public function ComputeFinancials($ticket)
@@ -500,6 +514,8 @@ class Project
 		{
 			//ConsoleLog($ticket->assignee['displayName']." ".$ticket->estimate/(60*60*8));
 		    $resource = $this->resourcetable[$ticket->assignee['displayName']];
+			if(!isset($resource->baselinework))
+				dd($this->resourcetable);
 			$resource->baselinework += $ticket->estimate/(60*60*8);
 			$hours = $ticket->estimate/(60*60);
 		}
@@ -511,11 +527,23 @@ class Project
 		$tj =  new Tj($this->project,$this->ticketlist);
 		$tj->Execute();
 	}
+	/*public function AddHistory()
+	{
+		dump($this->project->history);
+		$history =  new \StdClass();
+		$dte =  new \DateTime();
+		$dte = $dte->format('Y-m-d');
+		foreach($this->project as $key => $value) 
+		{
+			$history->project->$key = $value;
+		}
+		$this->project->history->$dte=$history;
+	}*/
 	public function Save()
 	{	
 		$this->project->sync_url = $url = route('sos.sync',[$this->user,$this->id]);
 		$this->project->gantt_url = $url = route('sos.gantt',[$this->user,$this->id]);
-		
+		$this->project->last_sync = date("Y-m-d"); 
 		$this->project->tree_url = 'https://'.env('AWS_URL').'.s3.us-west-2.amazonaws.com/sos/'.$this->user."/".$this->id."/tree.json";
 		$json_data=json_encode($this->project);
 		file_put_contents($this->folder."/tree.json",$json_data);

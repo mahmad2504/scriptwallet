@@ -2,6 +2,17 @@
 use Carbon\Carbon;
 use App\Database;
 
+function wfile_get_contents($path,$filename)
+{
+	if (!App::runningInConsole())
+	{
+		$path = "../".$path.$filename;
+	}
+	else
+		$path = $path.$filename;
+	
+	return file_get_contents($path);
+}
 function ConsoleLog($msg) 
 {
 	if(App::runningInConsole())

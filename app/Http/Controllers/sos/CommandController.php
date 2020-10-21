@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Database;
 use App;
 use App\sos\Project;
+use App\sos\Accounts;
 use Redirect,Response, Artisan;
 use Carbon\Carbon;
 
@@ -15,27 +16,12 @@ class CommandController extends Controller
 	private $serverurl=[];
 	public function Sync($user,$projectid,Request $request)
 	{
-		//$serverurl['mahmad']='https://script.google.com/macros/s/AKfycbyJjENO0HSdA_8Bcx_zGnJCywzIii-4ArYEcev0BXFS-YbKioWD/exec';
-		$serverurl['mahmad']='https://script.google.com/macros/s/AKfycbxQwtkZy4OwbsyQaAFEY-6zw7gjOz9MpCH1ShysBL_EvvFocIg/exec';
-		if(!isset($serverurl[$user]))
+		$accounts =  new Accounts();
+		$project = $accounts->LoadProject($user,$projectid);
+		if($project == null)
 		{
-			dump("Please check url");
-			dump("For any help or account information, Please send an email to mumtaz_ahmad@mentor.com");
-			return;
+			return;;
 		}
-		
-		$url=$serverurl[$user]."?func=getjob&id=".$projectid;
-		$settings = json_decode(file_get_contents($url));
-		
-		if(!isset($settings->name))
-		{
-			ConsoleLog("Project Not Found");
-			return;
-		}
-		$settings->user = $user;
-		$settings->project_url = $serverurl[$user];
-		$project = new Project($settings);
-		ConsoleLog("Processing ".$project->name);
 		if($request->configure == 1)
 		{
 			$project->ConfigureJiraFields();
