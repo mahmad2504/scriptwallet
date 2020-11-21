@@ -1,0 +1,395 @@
+project acs "" 2020-11-09 +48m
+{ 
+   timezone "Asia/Karachi"
+   timeformat "%Y-%m-%d"
+   numberformat "-" "" "," "." 1 
+   currencyformat "(" ")" "," "." 0 
+   currency "USD"
+   scenario plan "Plan" {}
+   extend task { text Jira "Jira"}
+} 
+macro allocate_developers [
+   allocate unassigned
+   allocate Firago_Alexey
+   allocate Kumar_Manish
+   allocate Tolstolytkin_Grigory
+]
+resource all "Developers" {
+    resource unassigned "unassigned" {
+        limits { weeklymax  40h}
+    }
+    resource Firago_Alexey "Firago_Alexey" {
+        limits { weeklymax  40h}
+    }
+    resource Kumar_Manish "Kumar_Manish" {
+        limits { weeklymax  40h}
+    }
+    resource Tolstolytkin_Grigory "Tolstolytkin_Grigory" {
+        limits { weeklymax  40h}
+    }
+}
+task t1 "1 " {
+task t1a0 "1.0 structure=910" {
+     task t1a0a0 "1.0.0 SOW Requirement" {
+          task t1a0a0a0 "1.0.0.0 R.1: MEL 11 cus" {
+             complete 0
+             Jira "PSP-11288"
+             priority 0
+          }
+          task t1a0a0a1 "1.0.0.1 R.2: U-Boot sha" {
+             complete 0
+             Jira "PSP-11289"
+             priority 0
+          }
+          task t1a0a0a2 "1.0.0.2 R.3: DDR3 memor" {
+             complete 0
+             Jira "PSP-11290"
+             priority 0
+          }
+          task t1a0a0a3 "1.0.0.3 R.4: Two UARTs " {
+             complete 0
+             Jira "PSP-11291"
+             priority 0
+          }
+          task t1a0a0a4 "1.0.0.4 R.5: RS485 on U" {
+             complete 0
+             Jira "PSP-11292"
+             priority 0
+          }
+          task t1a0a0a5 "1.0.0.5 R.6: Two LEDs o" {
+             complete 0
+             Jira "PSP-11293"
+             priority 0
+          }
+          task t1a0a0a6 "1.0.0.6 R.7: 10/100M Et" {
+             complete 0
+             Jira "PSP-11294"
+             priority 0
+          }
+          task t1a0a0a7 "1.0.0.7 R.8: eMMC" {
+             complete 0
+             Jira "PSP-11295"
+             priority 0
+          }
+          task t1a0a0a8 "1.0.0.8 R.9: SDCard" {
+             complete 0
+             Jira "PSP-11296"
+             priority 0
+          }
+          task t1a0a0a9 "1.0.0.9 R.10: USB Host " {
+             complete 0
+             Jira "PSP-11297"
+             priority 0
+          }
+          task t1a0a0a10 "1.0.0.10 R.11: External " {
+             complete 0
+             Jira "PSP-11298"
+             priority 0
+          }
+          task t1a0a0a11 "1.0.0.11 R.12: USB OTG a" {
+             complete 0
+             Jira "PSP-11299"
+             priority 0
+          }
+          task t1a0a0a12 "1.0.0.12 R.13: USB Hot-p" {
+             complete 0
+             Jira "PSP-11300"
+             priority 0
+          }
+          task t1a0a0a13 "1.0.0.13 R.14: USB Hub c" {
+             complete 0
+             Jira "PSP-11301"
+             priority 0
+          }
+          task t1a0a0a14 "1.0.0.14 R.15: Second US" {
+             complete 0
+             Jira "PSP-11302"
+             priority 0
+          }
+          task t1a0a0a15 "1.0.0.15 R.16: Dedicated" {
+             complete 0
+             Jira "PSP-11303"
+             priority 0
+          }
+          task t1a0a0a16 "1.0.0.16 R.17: xilinx-sp" {
+             complete 0
+             Jira "PSP-11304"
+             priority 0
+          }
+          task t1a0a0a17 "1.0.0.17 R.18: Display w" {
+             complete 0
+             Jira "PSP-11305"
+             priority 0
+          }
+          task t1a0a0a18 "1.0.0.18 R.19: RTC -ABLI" {
+             complete 0
+             Jira "PSP-11306"
+             priority 0
+          }
+          task t1a0a0a19 "1.0.0.19 R.20: EEPROM -M" {
+             complete 0
+             Jira "PSP-11307"
+             priority 0
+          }
+          task t1a0a0a20 "1.0.0.20 R.21: Productio" {
+             complete 0
+             Jira "PSP-11308"
+             priority 0
+          }
+     }
+     task t1a0a1 "1.0.1 Tasks" {
+          task t1a0a1a0 "1.0.1.0 M.3" {
+               task t1a0a1a0a0 "1.0.1.0.0 Create base Yoc" {
+                  complete 0
+                  Jira "PSP-11316"
+                  priority 0
+               }
+               task t1a0a1a0a1 "1.0.1.0.1 U-Boot splash s" {
+                  complete 0
+                  Jira "PSP-11328"
+                  priority 0
+               }
+               task t1a0a1a0a2 "1.0.1.0.2 Integrate U-Boo" {
+                  complete 0
+                  Jira "PSP-11329"
+                  priority 0
+               }
+               task t1a0a1a0a3 "1.0.1.0.3 Integrate Linux" {
+                  complete 0
+                  Jira "PSP-11330"
+                  priority 0
+               }
+               task t1a0a1a0a4 "1.0.1.0.4 Enable 2 UARTs " {
+                  complete 0
+                  Jira "PSP-11331"
+                  priority 0
+               }
+               task t1a0a1a0a5 "1.0.1.0.5 Enable RS485 on" {
+                  complete 0
+                  Jira "PSP-11332"
+                  priority 0
+               }
+               task t1a0a1a0a6 "1.0.1.0.6 ENET1 -10/100)" {
+                  complete 0
+                  Jira "PSP-11334"
+                  priority 0
+               }
+               task t1a0a1a0a7 "1.0.1.0.7 eMMC" {
+                  complete 0
+                  Jira "PSP-11335"
+                  priority 0
+               }
+               task t1a0a1a0a8 "1.0.1.0.8 SDCard" {
+                  complete 0
+                  Jira "PSP-11336"
+                  priority 0
+               }
+               task t1a0a1a0a9 "1.0.1.0.9 Display -no tou" {
+                  complete 0
+                  Jira "PSP-11344"
+                  priority 0
+               }
+               task t1a0a1a0a10 "1.0.1.0.10 RTC" {
+                  complete 0
+                  Jira "PSP-11345"
+                  priority 0
+               }
+               task t1a0a1a0a11 "1.0.1.0.11 EEPROM" {
+                  complete 0
+                  Jira "PSP-11346"
+                  priority 0
+               }
+               task t1a0a1a0a12 "1.0.1.0.12 Production and " {
+                  complete 0
+                  Jira "PSP-11347"
+                  priority 0
+               }
+               task t1a0a1a0a13 "1.0.1.0.13 eMMC deployment" {
+                  complete 0
+                  Jira "PSP-11348"
+                  priority 0
+               }
+          }
+          task t1a0a1a1 "1.0.1.1 M.4" {
+               task t1a0a1a1a0 "1.0.1.1.0 Draft ATP" {
+                  complete 0
+                  Jira "PSP-11317"
+                  priority 1000
+               }
+               task t1a0a1a1a1 "1.0.1.1.1 Internal review" {
+                  complete 0
+                  Jira "PSP-11318"
+                  priority 0
+               }
+          }
+          task t1a0a1a2 "1.0.1.2 M.5" {
+               task t1a0a1a2a0 "1.0.1.2.0 Address review " {
+                  complete 0
+                  Jira "PSP-11319"
+                  priority 0
+               }
+          }
+          task t1a0a1a3 "1.0.1.3 M.6" {
+               task t1a0a1a3a0 "1.0.1.3.0 USB Host" {
+                  complete 0
+                  Jira "PSP-11337"
+                  priority 0
+               }
+               task t1a0a1a3a1 "1.0.1.3.1 USB OTG" {
+                  complete 0
+                  Jira "PSP-11339"
+                  priority 0
+               }
+               task t1a0a1a3a2 "1.0.1.3.2 External USB Hu" {
+                  complete 0
+                  Jira "PSP-11338"
+                  priority 0
+               }
+               task t1a0a1a3a3 "1.0.1.3.3 Second USB Hub " {
+                  complete 0
+                  Jira "PSP-11341"
+                  priority 0
+               }
+               task t1a0a1a3a4 "1.0.1.3.4 USB Hot-plug" {
+                  complete 0
+                  Jira "PSP-11340"
+                  priority 0
+               }
+               task t1a0a1a3a5 "1.0.1.3.5 xilinx-spi driv" {
+                  complete 0
+                  Jira "PSP-11343"
+                  priority 0
+               }
+               task t1a0a1a3a6 "1.0.1.3.6 memory map for " {
+                  complete 0
+                  Jira "PSP-11342"
+                  priority 0
+               }
+               task t1a0a1a3a7 "1.0.1.3.7 Two LEDs over G" {
+                  complete 0
+                  Jira "PSP-11333"
+                  priority 0
+               }
+          }
+          task t1a0a1a4 "1.0.1.4 M.7" {
+               task t1a0a1a4a0 "1.0.1.4.0 Create M.5 test" {
+                  complete 0
+                  Jira "PSP-11320"
+                  priority 0
+               }
+               task t1a0a1a4a1 "1.0.1.4.1 QA Cycles" {
+                    task t1a0a1a4a1a0 "1.0.1.4.1.0 QA Cycle" {
+                       complete 0
+                       Jira "PSP-11322"
+                       priority 0
+                    }
+                    task t1a0a1a4a1a1 "1.0.1.4.1.1 Bugfixing" {
+                       complete 0
+                       Jira "PSP-11323"
+                       priority 0
+                    }
+                    task t1a0a1a4a1a2 "1.0.1.4.1.2 Validate fixes" {
+                       complete 0
+                       Jira "PSP-11324"
+                       priority 0
+                    }
+               }
+               task t1a0a1a4a2 "1.0.1.4.2 QA reported iss" {
+                  complete 0
+                  Jira "PSP-11325"
+                  priority 0
+               }
+               task t1a0a1a4a3 "1.0.1.4.3 Create test res" {
+                  complete 0
+                  Jira "PSP-11326"
+                  priority 0
+               }
+               task t1a0a1a4a4 "1.0.1.4.4 Generate releas" {
+                  complete 0
+                  Jira "PSP-11327"
+                  priority 0
+               }
+          }
+          task t1a0a1a5 "1.0.1.5 Acceptance issu" {
+             complete 0
+             Jira "PSP-11315"
+             priority 0
+          }
+     }
+}
+}
+
+		
+		#taskreport monthreporthtml "monthreporthtml" {
+		#	formats html
+		#	columns bsi, name, start, end, effort,resources, complete,Jira, monthly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%a %Y-%m-%d"
+		#	loadunit hours
+		#   hideresource @all
+		#}
+		
+		#taskreport monthreport "monthreport" {
+		#	formats csv
+		#	columns bsi { title "ExtId" },name, start { title "Start" }, end { title "End" }, resources { title "Resource" }, monthly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%Y-%m-%d"
+		#	loadunit hours
+		#	hideresource @all
+		#}
+		
+		#taskreport weekreporthtml "weekreporthtml" {
+		#	formats html
+		#	columns bsi, name, start, end, effort,resources, complete,Jira, weekly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%Y-%m-%d"
+		#	loadunit hours
+		#	hideresource @all
+		#}
+		
+		taskreport weekreport "weekreport" {
+			formats csv
+			columns bsi { title "ExtId" },name, start { title "Start" }, end { title "End" }, resources { title "Resource" }, weekly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+			timeformat "%Y-%m-%d"
+			loadunit hours
+			hideresource @all
+		}
+		
+		#taskreport dayreporthtml "dayreporthtml" {
+		#	formats html
+		#	columns bsi, name, start, end, effort,resources, complete,Jira, daily
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%Y-%m-%d"
+		#	loadunit hours
+		#	hideresource @all
+		#}
+	
+		
+		#resourcereport resourcegraphhtm "resourcehtml" {
+		#   formats html
+		#   headline "Resource Allocation Graph"
+		#   columns no, name, effort, weekly 
+		   #loadunit shortauto
+	       # We only like to show leaf tasks for leaf resources.
+		   # hidetask ~(isleaf() & isleaf_())
+		#   hidetask 1
+		#   sorttasks plan.start.up
+		#}
+		
+		resourcereport resourcegraph "resource" {
+		   formats csv
+		   headline "Resource Allocation Graph"
+		   columns name, effort, weekly 
+		   #loadunit shortauto
+	       # We only like to show leaf tasks for leaf resources.
+		   hidetask 1
+		   #hidetask ~(isleaf() & isleaf_())
+		   sorttasks plan.start.up
+		}
+		

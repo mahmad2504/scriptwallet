@@ -100,6 +100,25 @@ class Project
 			
 			return ;
 		}
+		foreach($settings->queries as $query)
+		{
+			if( strlen(trim($query->jql))==0)
+			{
+				dd("Jira Query is empty");
+			}
+			$query->links = [];
+			foreach(explode("\n",$query->params) as $keyvalue )
+			{
+				$param = explode("=",$keyvalue);
+				if(strtolower($param[0]) == 'link')
+					$query->links[] = $param[1];
+				else if(strtolower($param[0]) == 'alternate')
+					$query->alternate=$param[1];
+				
+			}
+			unset($query->params);
+		}
+		
 		$this->project = $settings;
 		$start = new \DateTime($settings->start);
 		$end = new \DateTime($settings->end);
@@ -145,8 +164,50 @@ class Project
 		$name =str_replace(" ","_",$name);
 		$name =str_replace(",","_",$name);
 		$name =str_replace("__","_",$name);
+		$name = str_replace('_[X]','',$name);
 		$name =explode('@',$name)[0];
 		return $name;
+	}
+	public static function GetNextLink($task,$type)
+	{
+		$output = [];
+		if(isset($task->outwardIssue))
+		{
+			$outwardIssues = $task->outwardIssue;
+			foreach($outwardIssues as $link=>$keys)
+			{
+				if($link == $type)
+					$output = array_merge($output,$keys);
+				
+			}
+		}
+		if(isset($task->inwardIssue))
+		{
+			$inwardIssues = $task->inwardIssue;
+			foreach($inwardIssues as $link=>$keys)
+			{
+				if($link == $type)
+					$output = array_merge($output,$keys);
+				
+			}
+		}
+		return $output;
+	}
+	public static function GetTestedBy($task)
+	{
+		if(!isset($task->inwardIssue))
+			return [];
+		$inwardIssues = $task->inwardIssue;
+		foreach($inwardIssues as $inwardIssue)
+		{
+			foreach($inwardIssues as $link=>$keys)
+			{
+				if($link == 'is tested by')
+					return $keys;
+				
+			}
+		}
+		return [];
 	}
 	public static function GetDependsOn($task)
 	{
@@ -323,6 +384,9 @@ class Project
 		$ticket->progress=0;
 		if($ticket->cestimate > 0)
 			$ticket->progress = $ticket->spent/$ticket->cestimate*100;
+		
+		if($ticket->cstatuscategory == 'resolved')
+			$ticket->progress = 100;
 		if($firtcall)
 		{
 			$temp = [];
@@ -365,7 +429,6 @@ class Project
 				$total += $acc;
 			}
 			$ticket->resourcetable=$temp;
-			
 			$this->ComputeFinancials($this->project);
 			$ticket->resourcetable=array_values($temp);
 			//dd($ticket->resourcetable);
@@ -438,8 +501,47 @@ class Project
 			$this->Show($sticket);
 		}
 	}
+	function FetchLinks($task,$fields,$links)
+	{
+		
+		if($task->issuetype == 'epic')
+		{
+			$query = "'Epic Link'=".$task->key;
+		}
+		else 
+		{
+			$keys = [];
+			foreach($links as $link)
+			{
+				$k = Project::GetNextLink($task,$link);
+				$keys = array_merge($keys,$k);
+			}
+			$query  = implode(",",$keys);
+			if(strlen($query)>0)
+			{
+				$query  = 'key in ('.$query .')';
+			}
+		}
+		if(strlen($query)>0)
+		{
+			dump($query);
+			$tickets =  @Jira::FetchTickets($query,$fields);
+			$task->children = array_values($tickets);
+		}
+		if($task->issuetype != 'epic')
+		{
+			if(isset($task->children))
+			{
+				foreach($task->children as $stask)
+					$this->FetchLinks($stask,$fields,$links);
+			}
+		}
+	}
 	function Sync($rebuild=0,$auto_sync=0)
 	{
+		set_time_limit(2000);
+		
+			
 		$this->project->auto_sync = $auto_sync;
 		$this->project->history = new \StdClass();
 		if(file_exists($this->folder."/tree.json"))
@@ -453,6 +555,7 @@ class Project
 				$this->project->history = new \StdClass();
 			
 		}
+		
 		Jira::Init($this->server);
 		$this->children = [];
 		$fields = new Fields($this->fieldkey);
@@ -464,7 +567,10 @@ class Project
 			{
 				ConsoleLog("Query ".$query->jql);
 				$query->summary = $query->jql;
+				if(isset($query->alternate))
+					$query->summary=$query->alternate;
 				$query->key='query'.$i;
+				
 				$objects = Jira::GetStructureObjects(explode("=",$query->jql)[1]);
 				if($objects == null)
 				{
@@ -484,10 +590,14 @@ class Project
 				{
 					ConsoleLog("Query ".$query->jql);	
 					$query->summary = $query->jql;
+					$query->issuetype = 'query';
+					if(isset($query->alternate))
+						$query->summary=$query->alternate;
 					$query->key='query'.$i;
 					$tickets =  @Jira::FetchTickets($query->jql,$fields);
 					$query->children = array_values($tickets);
 					$this->project->children[] = $query;
+					$this->FetchLinks($query,$fields,$query->links);
 				}
 				else
 				{

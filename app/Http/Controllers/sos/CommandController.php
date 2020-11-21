@@ -48,8 +48,8 @@ class CommandController extends Controller
 					$row['pDepend'] =  $row['pDepend'].$del.$predecessor->extid;
 					$del = ",";
 			   }
-			   else 
-					dd($key." dependency not found");
+			   //else 
+				//	dd($key." dependency not found");
 			}
 		}
 		$row['pParent'] = $ticket->pextid;
@@ -57,7 +57,7 @@ class CommandController extends Controller
 		{
 			$dticket = $ticket->duplicates;
 			$row['pStart'] = $dticket->sched_start;
-			dump($dticket->sched_end);
+			//dump($dticket->sched_end);
 			$row['pEnd'] = $dticket->sched_start; 
 			$row['sEnd'] = $dticket->sched_end;
 			$row['dup'] =  1;

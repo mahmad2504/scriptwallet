@@ -1,0 +1,253 @@
+project acs "tem" 2020-10-31 +48m
+{ 
+   timezone "Asia/Karachi"
+   timeformat "%Y-%m-%d"
+   numberformat "-" "" "," "." 1 
+   currencyformat "(" ")" "," "." 0 
+   currency "USD"
+   scenario plan "Plan" {}
+   extend task { text Jira "Jira"}
+} 
+macro allocate_developers [
+   allocate Ansari_Fakhir
+   allocate Saleem_Arsalan
+   allocate Bokshe_Onkar_Surendrakumar
+   allocate Bhola_Bikram
+   allocate Rehman_Abdur
+]
+resource all "Developers" {
+    resource Ansari_Fakhir "Ansari_Fakhir" {
+        limits { weeklymax  40h}
+    }
+    resource Saleem_Arsalan "Saleem_Arsalan" {
+        limits { weeklymax  40h}
+    }
+    resource Bokshe_Onkar_Surendrakumar "Bokshe_Onkar_Surendrakumar" {
+        limits { weeklymax  40h}
+    }
+    resource Bhola_Bikram "Bhola_Bikram" {
+        limits { weeklymax  40h}
+    }
+    resource Rehman_Abdur "Rehman_Abdur" {
+        limits { weeklymax  40h}
+    }
+}
+task t1 "1 tem" {
+task t1a0 "1.0 Dev Tasks" {
+     task t1a0a0 "1.0.0 MEIF MindSphere" {
+          task t1a0a0a0 "1.0.0.0 TESTMS-1 : ensu" {
+               task t1a0a0a0a0 "1.0.0.0.0 TESTMS-1.3: tes" {
+                  complete 100
+                  Jira "MEIF-1411"
+                  priority 0
+               }
+               task t1a0a0a0a1 "1.0.0.0.1 TESTMS-1.2: tes" {
+                  complete 100
+                  Jira "MEIF-1410"
+                  priority 0
+               }
+               task t1a0a0a0a2 "1.0.0.0.2 BUGFIX: On Indu" {
+                  complete 100
+                  Jira "MEIF-1409"
+                  priority 0
+               }
+          }
+          task t1a0a0a1 "1.0.0.1 MEIFMR-201: MEI" {
+             complete 100
+             Jira "MEIF-1371"
+             priority 0
+          }
+          task t1a0a0a2 "1.0.0.2 Develop Test an" {
+             complete 100
+             Jira "MEIF-1362"
+             priority 0
+          }
+          task t1a0a0a3 "1.0.0.3 MEL BSP sanity " {
+             complete 100
+             Jira "MEIF-1360"
+             priority 0
+          }
+          task t1a0a0a4 "1.0.0.4 Develop Test an" {
+             complete 100
+             Jira "MEIF-1359"
+             priority 0
+          }
+          task t1a0a0a5 "1.0.0.5 MEIF QA for PRI" {
+               task t1a0a0a5a0 "1.0.0.5.0 QA Cycle 2 - Bu" {
+                  complete 100
+                  Jira "MEIF-1363"
+                  priority 0
+               }
+               task t1a0a0a5a1 "1.0.0.5.1 Develop Test an" {
+                  complete 100
+                  Jira "MEIF-1362"
+                  priority 0
+               }
+               task t1a0a0a5a2 "1.0.0.5.2 Verify and test" {
+                  complete 100
+                  Jira "MEIF-1361"
+                  priority 0
+               }
+               task t1a0a0a5a3 "1.0.0.5.3 MEL BSP sanity " {
+                  complete 100
+                  Jira "MEIF-1360"
+                  priority 0
+               }
+               task t1a0a0a5a4 "1.0.0.5.4 Develop Test an" {
+                  complete 100
+                  Jira "MEIF-1359"
+                  priority 0
+               }
+               task t1a0a0a5a5 "1.0.0.5.5 Setup build and" {
+                  complete 100
+                  Jira "MEIF-1358"
+                  priority 0
+               }
+          }
+          task t1a0a0a6 "1.0.0.6 MEIF MindSphere" {
+               task t1a0a0a6a0 "1.0.0.6.0 MCLUPDATE-2: bu" {
+                  complete 100
+                  Jira "MEIF-1379"
+                  priority 0
+               }
+               task t1a0a0a6a1 "1.0.0.6.1 MCLUPDATE-1:  b" {
+                  complete 100
+                  Jira "MEIF-1378"
+                  priority 0
+               }
+               task t1a0a0a6a2 "1.0.0.6.2 MCLDOC-1 : Docu" {
+                  complete 100
+                  Jira "MEIF-1377"
+                  priority 0
+               }
+               task t1a0a0a6a3 "1.0.0.6.3 Stress testing" {
+                  complete 100
+                  Jira "MEIF-1354"
+                  priority 0
+               }
+               task t1a0a0a6a4 "1.0.0.6.4 Update MEIF pro" {
+                  complete 100
+                  Jira "MEIF-1353"
+                  priority 0
+               }
+               task t1a0a0a6a5 "1.0.0.6.5 MEL recipe upda" {
+                  complete 100
+                  Jira "MEIF-1352"
+                  priority 0
+               }
+               task t1a0a0a6a6 "1.0.0.6.6 Advanced demo a" {
+                  complete 100
+                  Jira "MEIF-1351"
+                  priority 0
+               }
+          }
+          task t1a0a0a7 "1.0.0.7 MEIF integratio" {
+               task t1a0a0a7a0 "1.0.0.7.0 Revert all sour" {
+                  complete 100
+                  Jira "MEIF-1620"
+                  priority 0
+               }
+               task t1a0a0a7a1 "1.0.0.7.1 Demo applicatio" {
+                  complete 100
+                  Jira "MEIF-1350"
+                  priority 0
+               }
+               task t1a0a0a7a2 "1.0.0.7.2 Map the MindCon" {
+                  complete 100
+                  Jira "MEIF-1349"
+                  priority 0
+               }
+               task t1a0a0a7a3 "1.0.0.7.3 Integrate MindS" {
+                  complete 100
+                  Jira "MEIF-1348"
+                  priority 0
+               }
+               task t1a0a0a7a4 "1.0.0.7.4 Run MindConnect" {
+                  complete 100
+                  Jira "MEIF-1347"
+                  priority 0
+               }
+               task t1a0a0a7a5 "1.0.0.7.5 Study MindSpher" {
+                  complete 100
+                  Jira "MEIF-1346"
+                  priority 0
+               }
+          }
+     }
+}
+}
+
+		
+		#taskreport monthreporthtml "monthreporthtml" {
+		#	formats html
+		#	columns bsi, name, start, end, effort,resources, complete,Jira, monthly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%a %Y-%m-%d"
+		#	loadunit hours
+		#   hideresource @all
+		#}
+		
+		#taskreport monthreport "monthreport" {
+		#	formats csv
+		#	columns bsi { title "ExtId" },name, start { title "Start" }, end { title "End" }, resources { title "Resource" }, monthly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%Y-%m-%d"
+		#	loadunit hours
+		#	hideresource @all
+		#}
+		
+		#taskreport weekreporthtml "weekreporthtml" {
+		#	formats html
+		#	columns bsi, name, start, end, effort,resources, complete,Jira, weekly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%Y-%m-%d"
+		#	loadunit hours
+		#	hideresource @all
+		#}
+		
+		taskreport weekreport "weekreport" {
+			formats csv
+			columns bsi { title "ExtId" },name, start { title "Start" }, end { title "End" }, resources { title "Resource" }, weekly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+			timeformat "%Y-%m-%d"
+			loadunit hours
+			hideresource @all
+		}
+		
+		#taskreport dayreporthtml "dayreporthtml" {
+		#	formats html
+		#	columns bsi, name, start, end, effort,resources, complete,Jira, daily
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%Y-%m-%d"
+		#	loadunit hours
+		#	hideresource @all
+		#}
+	
+		
+		#resourcereport resourcegraphhtm "resourcehtml" {
+		#   formats html
+		#   headline "Resource Allocation Graph"
+		#   columns no, name, effort, weekly 
+		   #loadunit shortauto
+	       # We only like to show leaf tasks for leaf resources.
+		   # hidetask ~(isleaf() & isleaf_())
+		#   hidetask 1
+		#   sorttasks plan.start.up
+		#}
+		
+		resourcereport resourcegraph "resource" {
+		   formats csv
+		   headline "Resource Allocation Graph"
+		   columns name, effort, weekly 
+		   #loadunit shortauto
+	       # We only like to show leaf tasks for leaf resources.
+		   hidetask 1
+		   #hidetask ~(isleaf() & isleaf_())
+		   sorttasks plan.start.up
+		}
+		

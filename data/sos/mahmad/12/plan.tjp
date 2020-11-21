@@ -1,0 +1,872 @@
+project acs "Templates" 2020-10-28 +48m
+{ 
+   timezone "Asia/Karachi"
+   timeformat "%Y-%m-%d"
+   numberformat "-" "" "," "." 1 
+   currencyformat "(" ")" "," "." 0 
+   currency "USD"
+   scenario plan "Plan" {}
+   extend task { text Jira "Jira"}
+} 
+macro allocate_developers [
+   allocate Mustafa_Hadi
+   allocate Ali_Anas
+   allocate unassigned
+   allocate Ali_Nasir
+   allocate Shafiq_Rana_Hassan
+   allocate Lavelle_Dewayne
+   allocate Farooq_Sumaiyya
+   allocate Azmi_Khula
+]
+resource all "Developers" {
+    resource Mustafa_Hadi "Mustafa_Hadi" {
+        limits { weeklymax  40h}
+    }
+    resource Ali_Anas "Ali_Anas" {
+        limits { weeklymax  40h}
+    }
+    resource unassigned "unassigned" {
+        limits { weeklymax  40h}
+    }
+    resource Ali_Nasir "Ali_Nasir" {
+        limits { weeklymax  40h}
+    }
+    resource Shafiq_Rana_Hassan "Shafiq_Rana_Hassan" {
+        limits { weeklymax  40h}
+    }
+    resource Lavelle_Dewayne "Lavelle_Dewayne" {
+        limits { weeklymax  40h}
+    }
+    resource Farooq_Sumaiyya "Farooq_Sumaiyya" {
+        limits { weeklymax  40h}
+    }
+    resource Azmi_Khula "Azmi_Khula" {
+        limits { weeklymax  40h}
+    }
+}
+task t1 "1 Templates" {
+task t1a0 "1.0 project = CB an" {
+     task t1a0a0 "1.0.0 QA: Verify Linu" {
+        complete 0
+        Jira "CB-13804"
+        priority 0
+        effort 2d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a1 "1.0.1 QA: Verify Kern" {
+        complete 0
+        Jira "CB-13803"
+        priority 0
+        effort 3d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a2 "1.0.2 QA: Test execut" {
+        complete 0
+        Jira "CB-13798"
+        priority 0
+        effort 1d
+        allocate Ali_Anas
+     }
+     task t1a0a3 "1.0.3 QA: Test execut" {
+        complete 0
+        Jira "CB-13796"
+        priority 0
+        effort 1d
+        allocate unassigned
+     }
+     task t1a0a4 "1.0.4 QA: Test execut" {
+        complete 0
+        Jira "CB-13795"
+        priority 0
+        effort 2d
+        allocate unassigned
+     }
+     task t1a0a5 "1.0.5 QA: Verify trac" {
+        complete 0
+        Jira "CB-13758"
+        priority 0
+        effort 2.5d
+        allocate Ali_Anas
+     }
+     task t1a0a6 "1.0.6 QA: Sanity test" {
+        complete 100
+        Jira "CB-13727"
+        priority 0
+     }
+     task t1a0a7 "1.0.7 QA: Sanity test" {
+        complete 100
+        Jira "CB-13726"
+        priority 0
+     }
+     task t1a0a8 "1.0.8 QA: Sanity test" {
+        complete 100
+        Jira "CB-13725"
+        priority 0
+     }
+     task t1a0a9 "1.0.9 QA: Sanity test" {
+        complete 100
+        Jira "CB-13724"
+        priority 0
+     }
+     task t1a0a10 "1.0.10 QA: Sanity test" {
+        complete 100
+        Jira "CB-13723"
+        priority 0
+     }
+     task t1a0a11 "1.0.11 QA: Sanity test" {
+        complete 25
+        Jira "CB-13657"
+        priority 0
+        effort 0.375d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a12 "1.0.12 Sanity testing " {
+        complete 100
+        Jira "CB-13656"
+        priority 0
+     }
+     task t1a0a13 "1.0.13 Sanity testing " {
+        complete 100
+        Jira "CB-13655"
+        priority 0
+     }
+     task t1a0a14 "1.0.14 QA: Sanity init" {
+        complete 100
+        Jira "CB-13366"
+        priority 0
+     }
+     task t1a0a15 "1.0.15  QA: Test Execu" {
+        complete 0
+        Jira "CB-13339"
+        priority 0
+        effort 4d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a16 "1.0.16  QA: Test Execu" {
+        complete 0
+        Jira "CB-13338"
+        priority 0
+        effort 4d
+        allocate Ali_Anas
+     }
+     task t1a0a17 "1.0.17 QA: Test execut" {
+        complete 0
+        Jira "CB-13337"
+        priority 0
+        effort 3d
+        allocate unassigned
+     }
+     task t1a0a18 "1.0.18 QA: Sanity test" {
+        complete 100
+        Jira "CB-13335"
+        priority 0
+     }
+     task t1a0a19 "1.0.19 QA: Sanity test" {
+        complete 100
+        Jira "CB-13334"
+        priority 0
+     }
+     task t1a0a20 "1.0.20 QA: Sanity test" {
+        complete 100
+        Jira "CB-13333"
+        priority 0
+     }
+     task t1a0a21 "1.0.21 QA: Test planni" {
+        complete 100
+        Jira "CB-13320"
+        priority 0
+     }
+     task t1a0a22 "1.0.22 QA: Test planni" {
+        complete 100
+        Jira "CB-13319"
+        priority 0
+     }
+     task t1a0a23 "1.0.23 QA: Place holde" {
+        complete 0
+        Jira "CB-13313"
+        priority 0
+        effort 5d
+        allocate Ali_Nasir
+     }
+     task t1a0a24 "1.0.24 QA: Test execut" {
+        complete 0
+        Jira "CB-13312"
+        priority 0
+        effort 5d
+        allocate Lavelle_Dewayne
+     }
+     task t1a0a25 "1.0.25 QA: Bug validat" {
+        complete 0
+        Jira "CB-13248"
+        priority 0
+        effort 1d
+        allocate Farooq_Sumaiyya
+     }
+     task t1a0a26 "1.0.26 QA: Bug validat" {
+        complete 0
+        Jira "CB-13244"
+        priority 0
+        effort 0.5d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a27 "1.0.27 QA: Document ve" {
+        complete 0
+        Jira "CB-13243"
+        priority 0
+        effort 0.5d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a28 "1.0.28 QA: Bug validat" {
+        complete 0
+        Jira "CB-13242"
+        priority 0
+        effort 0.5d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a29 "1.0.29 QA: Testing for" {
+        complete 0
+        Jira "CB-13241"
+        priority 0
+        effort 1d
+        allocate Ali_Anas
+     }
+     task t1a0a30 "1.0.30 QA: Testing for" {
+        complete 0
+        Jira "CB-13240"
+        priority 0
+        effort 1d
+        allocate Ali_Anas
+     }
+     task t1a0a31 "1.0.31 QA: Test Planni" {
+        complete 0
+        Jira "CB-13239"
+        priority 0
+        effort 1d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a32 "1.0.32 QA: Bug validat" {
+        complete 0
+        Jira "CB-13236"
+        priority 0
+        effort 0.5d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a33 "1.0.33 QA: Document ve" {
+        complete 0
+        Jira "CB-13235"
+        priority 0
+        effort 0.5d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a34 "1.0.34 QA: Testing for" {
+        complete 0
+        Jira "CB-13234"
+        priority 0
+        effort 3d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a35 "1.0.35 QA: Testing for" {
+        complete 0
+        Jira "CB-13233"
+        priority 0
+        effort 3d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a36 "1.0.36 QA: Test develo" {
+        complete 0
+        Jira "CB-13232"
+        priority 0
+        effort 1d
+        allocate Ali_Nasir
+     }
+     task t1a0a37 "1.0.37 QA: Test planni" {
+        complete 0
+        Jira "CB-13231"
+        priority 0
+        effort 2d
+        allocate Ali_Nasir
+     }
+     task t1a0a38 "1.0.38 QA: Add detaile" {
+        complete 50
+        Jira "CB-13142"
+        priority 0
+        effort 1.5d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a39 "1.0.39 QA: Installer t" {
+        complete 77
+        Jira "CB-12933"
+        priority 1000
+        effort 2d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a40 "1.0.40 QA: Test planni" {
+        complete 100
+        Jira "CB-12923"
+        priority 0
+     }
+     task t1a0a41 "1.0.41 QA: Document ve" {
+        complete 0
+        Jira "CB-12921"
+        priority 0
+        effort 3d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a42 "1.0.42 QA: Bug validat" {
+        complete 0
+        Jira "CB-12920"
+        priority 0
+        effort 3d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a43 "1.0.43 QA: Test execut" {
+        complete 0
+        Jira "CB-12919"
+        priority 0
+        effort 2d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a44 "1.0.44 QA: Test Execut" {
+        complete 0
+        Jira "CB-12918"
+        priority 0
+        effort 2d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a45 "1.0.45 QA: Test Execut" {
+        complete 0
+        Jira "CB-12917"
+        priority 0
+        effort 2d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a46 "1.0.46 QA: Test Execut" {
+        complete 0
+        Jira "CB-12916"
+        priority 0
+        effort 2d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a47 "1.0.47 QA: Test Execut" {
+        complete 0
+        Jira "CB-12915"
+        priority 0
+        effort 3d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a48 "1.0.48 QA: Test Execut" {
+        complete 0
+        Jira "CB-12871"
+        priority 0
+        effort 2d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a49 "1.0.49 QA: Test Execut" {
+        complete 0
+        Jira "CB-12864"
+        priority 0
+        effort 2d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a50 "1.0.50  QA: Test Execu" {
+        complete 0
+        Jira "CB-12858"
+        priority 0
+        effort 2d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a51 "1.0.51 QA: Test develo" {
+        complete 0
+        Jira "CB-12857"
+        priority 0
+        effort 3d
+        allocate Farooq_Sumaiyya
+     }
+     task t1a0a52 "1.0.52 QA: Test planni" {
+        complete 27
+        Jira "CB-12856"
+        priority 999
+        effort 2.1875d
+        allocate Farooq_Sumaiyya
+     }
+     task t1a0a53 "1.0.53 QA: Test execut" {
+        complete 0
+        Jira "CB-12671"
+        priority 0
+        effort 1d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a54 "1.0.54 QA: Test Execut" {
+        complete 0
+        Jira "CB-12666"
+        priority 0
+        effort 2d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a55 "1.0.55 QA: Test execut" {
+        complete 0
+        Jira "CB-12665"
+        priority 0
+        effort 0.5d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a56 "1.0.56 QA: Test execut" {
+        complete 0
+        Jira "CB-12664"
+        priority 0
+        effort 2d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a57 "1.0.57 QA: Test develo" {
+        complete 0
+        Jira "CB-12663"
+        priority 0
+        effort 1d
+        allocate Azmi_Khula
+     }
+     task t1a0a58 "1.0.58 QA: Test planni" {
+        complete 0
+        Jira "CB-12662"
+        priority 0
+        effort 1d
+        allocate Azmi_Khula
+     }
+     task t1a0a59 "1.0.59 QA: Test execut" {
+        complete 0
+        Jira "CB-12659"
+        priority 0
+        effort 4d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a60 "1.0.60 QA: Test develo" {
+        complete 0
+        Jira "CB-12658"
+        priority 0
+        effort 1d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a61 "1.0.61 QA: Test planni" {
+        complete 0
+        Jira "CB-12657"
+        priority 0
+        effort 1d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a62 "1.0.62 QA: Test planni" {
+        complete 100
+        Jira "CB-12342"
+        priority 0
+     }
+     task t1a0a63 "1.0.63 QA: Verify Linu" {
+        complete 0
+        Jira "CB-12317"
+        priority 0
+        effort 3d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a64 "1.0.64 QA: Bug fixes v" {
+        complete 0
+        Jira "CB-12315"
+        priority 0
+        effort 2d
+        allocate Lavelle_Dewayne
+     }
+     task t1a0a65 "1.0.65 QA: Document ve" {
+        complete 0
+        Jira "CB-12314"
+        priority 0
+        effort 1d
+        allocate Lavelle_Dewayne
+     }
+     task t1a0a66 "1.0.66 QA: Final Test " {
+        complete 0
+        Jira "CB-12313"
+        priority 0
+        effort 2d
+        allocate Lavelle_Dewayne
+     }
+     task t1a0a67 "1.0.67 QA: Test execut" {
+        complete 0
+        Jira "CB-12312"
+        priority 0
+        effort 5d
+        allocate Lavelle_Dewayne
+     }
+     task t1a0a68 "1.0.68 QA: Test develo" {
+        complete 0
+        Jira "CB-12311"
+        priority 0
+        effort 1d
+        allocate Ali_Nasir
+     }
+     task t1a0a69 "1.0.69 QA: Test planni" {
+        complete 0
+        Jira "CB-12310"
+        priority 998
+        effort 1d
+        allocate Ali_Nasir
+     }
+     task t1a0a70 "1.0.70 QA: Test planni" {
+        complete 95
+        Jira "CB-12290"
+        priority 997
+        effort 0.125d
+        allocate Ali_Nasir
+     }
+     task t1a0a71 "1.0.71 QA: Final Sanit" {
+        complete 0
+        Jira "CB-12289"
+        priority 0
+        effort 3d
+        allocate Farooq_Sumaiyya
+     }
+     task t1a0a72 "1.0.72 QA: Bug fix val" {
+        complete 0
+        Jira "CB-12288"
+        priority 0
+        effort 2d
+        allocate Farooq_Sumaiyya
+     }
+     task t1a0a73 "1.0.73 QA: Verificatio" {
+        complete 0
+        Jira "CB-12287"
+        priority 0
+        effort 4d
+        allocate Farooq_Sumaiyya
+     }
+     task t1a0a74 "1.0.74 QA: Place holde" {
+        complete 0
+        Jira "CB-12286"
+        priority 0
+        effort 5d
+        allocate Ali_Nasir
+     }
+     task t1a0a75 "1.0.75 QA: Regression " {
+        complete 0
+        Jira "CB-12285"
+        priority 0
+        effort 6d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a76 "1.0.76 QA: Verify comm" {
+        complete 100
+        Jira "CB-12284"
+        priority 0
+     }
+     task t1a0a77 "1.0.77 QA: Verify Kern" {
+        complete 0
+        Jira "CB-12283"
+        priority 0
+        effort 2d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a78 "1.0.78 QA: Bug validat" {
+        complete 0
+        Jira "CB-12276"
+        priority 0
+        effort 2d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a79 "1.0.79 QA: Final sanit" {
+        complete 0
+        Jira "CB-12275"
+        priority 0
+        effort 2d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a80 "1.0.80 QA: Sanity inst" {
+        complete 0
+        Jira "CB-12274"
+        priority 0
+        effort 1d
+        allocate Ali_Anas
+     }
+     task t1a0a81 "1.0.81 QA: Sanity inst" {
+        complete 0
+        Jira "CB-12273"
+        priority 0
+        effort 1d
+        allocate Ali_Anas
+     }
+     task t1a0a82 "1.0.82 QA: Sanity inst" {
+        complete 0
+        Jira "CB-12272"
+        priority 0
+        effort 1d
+        allocate Ali_Anas
+     }
+     task t1a0a83 "1.0.83 QA: Detailed in" {
+        complete 0
+        Jira "CB-12271"
+        priority 0
+        effort 6d
+        allocate Ali_Anas
+     }
+     task t1a0a84 "1.0.84 QA: Detailed in" {
+        complete 0
+        Jira "CB-12270"
+        priority 0
+        effort 6d
+        allocate Ali_Anas
+     }
+     task t1a0a85 "1.0.85 QA: Installer t" {
+        complete 100
+        Jira "CB-12269"
+        priority 0
+     }
+     task t1a0a86 "1.0.86 QA: Test develo" {
+        complete 0
+        Jira "CB-12268"
+        priority 0
+        effort 3d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a87 "1.0.87 QA: Test planni" {
+        complete 13
+        Jira "CB-12267"
+        priority 996
+        effort 2.625d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a88 "1.0.88 QA: Verify onli" {
+        complete 0
+        Jira "CB-12265"
+        priority 0
+        effort 0.5d
+        allocate Ali_Nasir
+     }
+     task t1a0a89 "1.0.89 QA: Overall rel" {
+        complete 0
+        Jira "CB-12264"
+        priority 0
+        effort 0.5d
+        allocate Ali_Nasir
+     }
+     task t1a0a90 "1.0.90 QA: Verify inst" {
+        complete 0
+        Jira "CB-12263"
+        priority 0
+        effort 1.5d
+        allocate Ali_Nasir
+     }
+     task t1a0a91 "1.0.91 QA: Verify rele" {
+        complete 0
+        Jira "CB-12262"
+        priority 0
+        effort 2d
+        allocate Ali_Nasir
+     }
+     task t1a0a92 "1.0.92 QA: Bug validat" {
+        complete 0
+        Jira "CB-12260"
+        priority 0
+        effort 0.5d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a93 "1.0.93 QA: Document ve" {
+        complete 0
+        Jira "CB-12259"
+        priority 0
+        effort 0.5d
+        allocate Azmi_Khula
+     }
+     task t1a0a94 "1.0.94 QA: Final Test " {
+        complete 0
+        Jira "CB-12258"
+        priority 0
+        effort 0.5d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a95 "1.0.95 QA: Test execut" {
+        complete 0
+        Jira "CB-12257"
+        priority 0
+        effort 1d
+        allocate Ali_Anas
+     }
+     task t1a0a96 "1.0.96 QA: Test develo" {
+        complete 75
+        Jira "CB-12256"
+        priority 995
+        effort 0.125d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a97 "1.0.97 QA: Test planni" {
+        complete 88
+        Jira "CB-12255"
+        priority 994
+        effort 0.125d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a98 "1.0.98 QA: Bug validat" {
+        complete 0
+        Jira "CB-12253"
+        priority 0
+        effort 0.5d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a99 "1.0.99 QA: Document ve" {
+        complete 0
+        Jira "CB-12252"
+        priority 0
+        effort 0.5d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a100 "1.0.100 QA: Test execut" {
+        complete 0
+        Jira "CB-12251"
+        priority 0
+        effort 1d
+        allocate Ali_Nasir
+     }
+     task t1a0a101 "1.0.101 QA: Test develo" {
+        complete 100
+        Jira "CB-12250"
+        priority 0
+     }
+     task t1a0a102 "1.0.102 QA: Test planni" {
+        complete 100
+        Jira "CB-12249"
+        priority 0
+     }
+     task t1a0a103 "1.0.103 QA: Test Execut" {
+        complete 0
+        Jira "CB-12212"
+        priority 0
+        effort 3d
+        allocate Mustafa_Hadi
+     }
+     task t1a0a104 "1.0.104 QA: Bug validat" {
+        complete 0
+        Jira "CB-12211"
+        priority 0
+        effort 3d
+        allocate Lavelle_Dewayne
+     }
+     task t1a0a105 "1.0.105 QA: Document ve" {
+        complete 0
+        Jira "CB-12210"
+        priority 0
+        effort 2d
+        allocate Ali_Nasir
+     }
+     task t1a0a106 "1.0.106 QA: Regression " {
+        complete 0
+        Jira "CB-12208"
+        priority 0
+        effort 7d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a107 "1.0.107 QA: Test develo" {
+        complete 0
+        Jira "CB-12207"
+        priority 0
+        effort 2d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a108 "1.0.108 QA: Test planni" {
+        complete 0
+        Jira "CB-12206"
+        priority 0
+        effort 3d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a109 "1.0.109 QA: Test planni" {
+        complete 100
+        Jira "CB-11895"
+        priority 0
+     }
+     task t1a0a110 "1.0.110 QA: Verify debu" {
+        complete 0
+        Jira "CB-11661"
+        priority 0
+        effort 2d
+        allocate Shafiq_Rana_Hassan
+     }
+     task t1a0a111 "1.0.111 QA: Add test ca" {
+        complete 100
+        Jira "CB-9842"
+        priority 0
+     }
+     task t1a0a112 "1.0.112 QA: Cover missi" {
+        complete 100
+        Jira "CB-9550"
+        priority 0
+     }
+}
+}
+
+		
+		#taskreport monthreporthtml "monthreporthtml" {
+		#	formats html
+		#	columns bsi, name, start, end, effort,resources, complete,Jira, monthly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%a %Y-%m-%d"
+		#	loadunit hours
+		#   hideresource @all
+		#}
+		
+		#taskreport monthreport "monthreport" {
+		#	formats csv
+		#	columns bsi { title "ExtId" },name, start { title "Start" }, end { title "End" }, resources { title "Resource" }, monthly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%Y-%m-%d"
+		#	loadunit hours
+		#	hideresource @all
+		#}
+		
+		#taskreport weekreporthtml "weekreporthtml" {
+		#	formats html
+		#	columns bsi, name, start, end, effort,resources, complete,Jira, weekly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%Y-%m-%d"
+		#	loadunit hours
+		#	hideresource @all
+		#}
+		
+		taskreport weekreport "weekreport" {
+			formats csv
+			columns bsi { title "ExtId" },name, start { title "Start" }, end { title "End" }, resources { title "Resource" }, weekly
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+			timeformat "%Y-%m-%d"
+			loadunit hours
+			hideresource @all
+		}
+		
+		#taskreport dayreporthtml "dayreporthtml" {
+		#	formats html
+		#	columns bsi, name, start, end, effort,resources, complete,Jira, daily
+			# For this report we like to have the abbreviated weekday in front
+			# of the date. %a is the tag for this.
+		#	timeformat "%Y-%m-%d"
+		#	loadunit hours
+		#	hideresource @all
+		#}
+	
+		
+		#resourcereport resourcegraphhtm "resourcehtml" {
+		#   formats html
+		#   headline "Resource Allocation Graph"
+		#   columns no, name, effort, weekly 
+		   #loadunit shortauto
+	       # We only like to show leaf tasks for leaf resources.
+		   # hidetask ~(isleaf() & isleaf_())
+		#   hidetask 1
+		#   sorttasks plan.start.up
+		#}
+		
+		resourcereport resourcegraph "resource" {
+		   formats csv
+		   headline "Resource Allocation Graph"
+		   columns name, effort, weekly 
+		   #loadunit shortauto
+	       # We only like to show leaf tasks for leaf resources.
+		   hidetask 1
+		   #hidetask ~(isleaf() & isleaf_())
+		   sorttasks plan.start.up
+		}
+		
