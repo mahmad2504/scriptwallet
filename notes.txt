@@ -1,2 +1,3 @@
 C:\Users\mahmad>aws s3 cp sync.png s3://eps.mentorcloudservices.com/sos/platform/ --acl public-read
 upload: .\sync.png to s3://eps.mentorcloudservices.com/sos/platform/sync.png
+git config --system --unset credential.helper
